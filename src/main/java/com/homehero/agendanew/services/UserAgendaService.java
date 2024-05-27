@@ -11,6 +11,7 @@ import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 @Service
@@ -21,6 +22,9 @@ public class UserAgendaService {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public void schedule_visit(UserAgendaDTO event) {
         User_agenda new_event = new User_agenda(event, true);
@@ -51,7 +55,7 @@ public class UserAgendaService {
     }
 
     public HeroAgenda getHeroAgenda(int hero_id) {
-        //get from profile ms
-        return new HeroAgenda("L,M,X,J,V", 8, 17);
+        String url = "https://msusuarios-zaewler4iq-uc.a.run.app/User/GetHeroAgenda?hero_id=" + hero_id;
+        return restTemplate.getForObject(url, HeroAgenda.class);
     }
 }
