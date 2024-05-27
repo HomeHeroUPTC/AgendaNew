@@ -7,8 +7,6 @@ import lombok.Setter;
 @Setter
 public class UserAgendaDTO {
 
-    private int id;
-
     private int hero_id;
 
     private int client_id;

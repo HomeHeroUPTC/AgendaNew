@@ -18,8 +18,8 @@ public class User_agenda {
         String[] date_split = userAgendaDTO.getEvent_date().split("-");
 
         this.year = Integer.parseInt(date_split[0]);
-        this.month = Integer.parseInt(date_split[2]);
-        this.day = Integer.parseInt(date_split[1]);
+        this.month = Integer.parseInt(date_split[1]);
+        this.day = Integer.parseInt(date_split[2]);
         this.hour = userAgendaDTO.getHour();
         this.is_visit = is_visit;
         this.hero_id = userAgendaDTO.getHero_id();

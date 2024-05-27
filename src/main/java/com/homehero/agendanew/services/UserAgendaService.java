@@ -54,8 +54,4 @@ public class UserAgendaService {
         //get from profile ms
         return new HeroAgenda("L,M,X,J,V", 8, 17);
     }
-
-
-
-
 }
