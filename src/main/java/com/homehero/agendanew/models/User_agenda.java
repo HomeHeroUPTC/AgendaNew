@@ -25,6 +25,7 @@ public class User_agenda {
         this.hero_id = userAgendaDTO.getHero_id();
         this.client_id = userAgendaDTO.getClient_id();
         this.event_id = userAgendaDTO.getEvent_id();
+        this.status = 1;
     }
 
     @Id
@@ -55,5 +56,8 @@ public class User_agenda {
 
     @Column(nullable = false)
     private int hour;
+
+    @Column(nullable = false)
+    private int status;
 
 }

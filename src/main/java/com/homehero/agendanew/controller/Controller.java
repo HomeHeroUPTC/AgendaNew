@@ -1,6 +1,8 @@
 package com.homehero.agendanew.controller;
 
 import com.homehero.agendanew.DTOagenda.AvailabilityDTO;
+import com.homehero.agendanew.DTOagenda.ClientAgendaDTO;
+import com.homehero.agendanew.DTOagenda.HeroAgendaDTO;
 import com.homehero.agendanew.DTOagenda.UserAgendaDTO;
 import com.homehero.agendanew.models.ErrorResponse;
 import com.homehero.agendanew.services.UserAgendaService;
@@ -42,6 +44,26 @@ public class Controller {
     public ResponseEntity<?> GetAvailableHeroDays(@RequestParam  int hero_id) {
         try {
             List<AvailabilityDTO> services = userAgendaService.getAvailableDays(hero_id);
+            return new ResponseEntity<>(services, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErrorResponse("An error occurred while fetching services: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(value = "/GetClientAgenda")
+    public ResponseEntity<?> GetClientAgenda(@RequestParam  int client_id) {
+        try {
+            List<ClientAgendaDTO> services = userAgendaService.getClientEvents(client_id);
+            return new ResponseEntity<>(services, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErrorResponse("An error occurred while fetching services: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(value = "/GetHeroAgenda")
+    public ResponseEntity<?> GetHeroAgenda(@RequestParam  int hero_id) {
+        try {
+            List<HeroAgendaDTO> services = userAgendaService.getHeroEvents(hero_id);
             return new ResponseEntity<>(services, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErrorResponse("An error occurred while fetching services: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
